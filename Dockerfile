@@ -27,15 +27,15 @@ RUN apt-get update && apt-get install -y \
 
 ### Janus ###
 RUN apt-get -y update && apt-get install -y \
-	libmicrohttpd-dev \
-	libjansson-dev \
-	libsofia-sip-ua-dev \
-	libglib2.0-dev \
-	libssl-dev \
-	libopus-dev \
-	libogg-dev \
-	libcurl4-openssl-dev \
-	liblua5.3-dev \
+    libmicrohttpd-dev \
+    libjansson-dev \
+    libsofia-sip-ua-dev \
+    libglib2.0-dev \
+    libssl-dev \
+    libopus-dev \
+    libogg-dev \
+    libcurl4-openssl-dev \
+    liblua5.3-dev \
     libusrsctp-dev \
     libwebsockets-dev \
     libnanomsg-dev \
