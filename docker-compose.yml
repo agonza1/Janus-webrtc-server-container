@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+    janus_server:
+        build:
+          context: .
+        command: ["-S", "173.194.196.127:19302"]
+#        env_file: ./.env
+#        network_mode: "host"
+#        volumes:
+#         - ./conf:/opt/janus/etc/janus
+        ulimits:
+          nproc: 65535
+          nofile:
+            soft: 100000
+            hard: 100000
+        restart: always
