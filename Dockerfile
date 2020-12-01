@@ -27,20 +27,20 @@ RUN apt-get update && apt-get install -y \
 
 ### Janus ###
 RUN apt-get -y update && apt-get install -y \
-    libmicrohttpd-dev \
-    libjansson-dev \
-    libsofia-sip-ua-dev \
-    libglib2.0-dev \
-    libssl-dev \
-    libopus-dev \
-    libogg-dev \
-    libcurl4-openssl-dev \
-    liblua5.3-dev \
-    libusrsctp-dev \
-    libwebsockets-dev \
-    libnanomsg-dev \
-    librabbitmq-dev && \
-    apt-get clean
+        libmicrohttpd-dev \
+        libjansson-dev \
+        libsofia-sip-ua-dev \
+        libglib2.0-dev \
+        libssl-dev \
+        libopus-dev \
+        libogg-dev \
+        libcurl4-openssl-dev \
+        liblua5.3-dev \
+        libusrsctp-dev \
+        libwebsockets-dev \
+        libnanomsg-dev \
+        librabbitmq-dev && \
+        apt-get clean
 
 # libnice build
 RUN cd /root && \
@@ -63,11 +63,11 @@ RUN cd /root && \
 
 # Datachannel build
 RUN cd /root && \
-    git clone https://github.com/sctplab/usrsctp && \
-    cd usrsctp && \
-    ./bootstrap && \
-    ./configure --prefix=/usr --disable-programs --disable-inet --disable-inet6 && \
-    make && make install
+        git clone https://github.com/sctplab/usrsctp && \
+        cd usrsctp && \
+        ./bootstrap && \
+        ./configure --prefix=/usr --disable-programs --disable-inet --disable-inet6 && \
+        make && make install
 
 RUN cd /root && git clone git://git.libwebsockets.org/libwebsockets && \
 	cd libwebsockets && \
