@@ -91,13 +91,6 @@ RUN cd /root/janus-gateway && \
 	make install && \
 	make configs
 
-#RUN sed -i "s/admin_http = no/admin_http = yes/g" /opt/janus/etc/janus/janus.transport.http.jcfg
-#RUN sed -i "s/https = no/https = yes/g" /opt/janus/etc/janus/janus.transport.http.jcfg
-#RUN sed -i "s/;secure_port = 8089/secure_port = 8089/g" /opt/janus/etc/janus/janus.transport.http.jcfg
-#RUN sed -i "s/wss = no/wss = yes/g" /opt/janus/etc/janus/janus.transport.websockets.jcfg
-#RUN sed -i "s/;wss_port = 8989/wss_port = 8989/g" /opt/janus/etc/janus/janus.transport.websockets.jcfg
-#RUN sed -i "s/;rtp_port_range = 20000-40000/rtp_port_range = 10000-10300/g" /opt/janus/etc/janus/janus.jcfg
-
 ### Cleaning ###
 RUN apt-get clean && apt-get autoclean && apt-get autoremove
 

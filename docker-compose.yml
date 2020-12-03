@@ -5,8 +5,14 @@ services:
         build:
           context: .
         command: ["-S", "173.194.196.127:19302"]
-#        env_file: ./.env
-#        network_mode: "host"
+        ports:
+          - "8088:8088"
+          - "8089:8089"
+          - "7088:7088"
+          - "7089:7089"
+          - "8188:8188"
+          - "8889:8889"
+          - "8000:8000"
 #        volumes:
 #         - ./conf:/opt/janus/etc/janus
         ulimits:
