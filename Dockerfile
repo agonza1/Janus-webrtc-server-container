@@ -3,13 +3,13 @@ FROM debian:10.6
 ### Build tools ###
 RUN apt-get -y update && \
 	apt-get install -y \
-		gengetopt \
-		pkg-config \
-		automake \
-		libtool \
-		cmake \
-		build-essential \
-		gtk-doc-tools && \
+	gengetopt \
+	pkg-config \
+	automake \
+	libtool \
+	cmake \
+	build-essential \
+	gtk-doc-tools && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 
@@ -83,10 +83,10 @@ RUN cd /root && git clone https://github.com/meetecho/janus-gateway.git
 RUN cd /root/janus-gateway && \
 	./autogen.sh && \
 	./configure --prefix=/opt/janus \
-			--disable-docs \
-    		--disable-rabbitmq \
-    		--disable-mqtt \
-    		--disable-unix-sockets && \
+	--disable-docs \
+	--disable-rabbitmq \
+	--disable-mqtt \
+	--disable-unix-sockets && \
 	make && \
 	make install && \
 	make configs
