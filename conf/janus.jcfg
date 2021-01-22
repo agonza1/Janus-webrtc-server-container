@@ -4,11 +4,11 @@
 # and, if needed, shared apisecret and/or token authentication mechanism
 # between application(s) and Janus.
 general: {
-	configs_folder = "@confdir@"			# Configuration files folder
-	plugins_folder = "@plugindir@"			# Plugins folder
-	transports_folder = "@transportdir@"	# Transports folder
-	events_folder = "@eventdir@"			# Event handlers folder
-	loggers_folder = "@loggerdir@"			# External loggers folder
+	configs_folder = "/opt/janus/etc/janus"			        # Configuration files folder
+	plugins_folder = "/opt/janus/lib/janus/plugins"			# Plugins folder
+	transports_folder = "/opt/janus/lib/janus/transports"	# Transports folder
+	events_folder = "/opt/janus/lib/janus/events"			# Event handlers folder
+	loggers_folder = "/opt/janus/lib/janus/loggers"			# External loggers folder
 
 		# The next settings configure logging
 	#log_to_stdout = false					# Whether the Janus output should be written
