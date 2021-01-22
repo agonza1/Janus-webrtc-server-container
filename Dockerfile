@@ -86,6 +86,7 @@ RUN cd /root/janus-gateway && \
 	--disable-docs \
 	--disable-rabbitmq \
 	--disable-mqtt \
+	--disable-nanomsg \
 	--disable-unix-sockets && \
 	make && \
 	make install && \
