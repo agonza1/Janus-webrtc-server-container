@@ -13,6 +13,7 @@ services:
           - "8188:8188"
           - "8889:8889"
           - "8000:8000"
+          - "10000-10300:10000-10300/udp"
 #        volumes:
 #         - ./conf:/opt/janus/etc/janus
         ulimits:
