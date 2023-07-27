@@ -69,7 +69,7 @@ RUN cd /root && \
         ./configure --prefix=/usr --disable-programs --disable-inet --disable-inet6 && \
         make && make install
 
-RUN cd /root && git clone git://git.libwebsockets.org/libwebsockets && \
+RUN cd /root && git clone https://github.com/warmcat/libwebsockets.git && \
 	cd libwebsockets && \
 	git checkout v3.2-stable && \
 	mkdir build && \
