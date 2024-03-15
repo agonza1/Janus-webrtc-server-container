@@ -1,4 +1,4 @@
-FROM debian:10.6
+FROM debian:12.5
 
 ### Build tools ###
 RUN apt-get -y update && \
@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y \
 	git \
 	wget \
 	unzip \
-	python \
+	python-is-python3 \
+	meson \
 	libconfig-dev
 
 ### Janus ###
@@ -44,19 +45,15 @@ RUN apt-get -y update && apt-get install -y \
 
 # libnice build
 RUN cd /root && \
-	git clone https://gitlab.freedesktop.org/libnice/libnice && \
-	cd libnice && \
-	git checkout 0.1.17 && \
-	./autogen.sh && \
-	./configure --prefix=/usr && \
-	make && \
-	make install
+git clone https://gitlab.freedesktop.org/libnice/libnice && \
+cd libnice && \
+meson --prefix=/usr build && ninja -C build && ninja -C build install
 
 # srtp build
 RUN cd /root && \
-	wget https://github.com/cisco/libsrtp/archive/v2.3.0.tar.gz && \
-	tar xfv v2.3.0.tar.gz && \
-	cd libsrtp-2.3.0 && \
+	wget https://github.com/cisco/libsrtp/archive/v2.6.0.tar.gz && \
+	tar xfv v2.6.0.tar.gz && \
+	cd libsrtp-2.6.0 && \
 	./configure --prefix=/usr --enable-openssl && \
 	make shared_library && \
 	make install
@@ -68,15 +65,6 @@ RUN cd /root && \
         ./bootstrap && \
         ./configure --prefix=/usr --disable-programs --disable-inet --disable-inet6 && \
         make && make install
-
-RUN cd /root && git clone git://git.libwebsockets.org/libwebsockets && \
-	cd libwebsockets && \
-	git checkout v3.2-stable && \
-	mkdir build && \
-	cd build && \
-	cmake -DLWS_MAX_SMP=1 -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_C_FLAGS="-fpic" .. && \
-	make && \
-	make install
 
 # Clone and install janus-gateway
 RUN cd /root && git clone https://github.com/meetecho/janus-gateway.git
@@ -93,7 +81,7 @@ RUN cd /root/janus-gateway && \
 	make configs
 
 ### Cleaning ###
-RUN apt-get clean && apt-get autoclean && apt-get autoremove
+RUN apt-get clean && apt-get autoclean && rm -rf /var/lib/apt/lists/* && apt-get autoremove
 
 EXPOSE 8188
 EXPOSE 8088

@@ -15,10 +15,18 @@ There are several things you can configure, either in a configuration file:
 
 Or passing the variables when starting Janus. For example: 
 
-* add `-S stun_srv_addr at` the end of your docker run command to let janus discover its own public ip through stun
+* add `-n` followed by the debug level from 1-7 (7=maximum)
+
+* add `-S stun_srv_addr` at the end of your docker run command to let janus discover its own public ip through stun
+
+* add `-d` followed by the server name you want to use
 
 * add `-e` if you want to enable event handlers
 
 ## Running & Config with docker docker-compose
 
 `docker-compose up`
+
+## Validate it is running
+
+You can validate it is running and see the server info by going to http://localhost:8088/janus/info

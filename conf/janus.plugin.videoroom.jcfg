@@ -5,6 +5,8 @@
 # pin = <optional password needed for joining the room>
 # require_pvtid = true|false (whether subscriptions are required to provide a valid private_id 
 #			to associate with a publisher, default=false)
+# signed_tokens = true|false (whether access to the room requires signed tokens; default=false,
+#			only works if signed tokens are used in the core as well)
 # publishers = <max number of concurrent senders> (e.g., 6 for a video
 #              conference or 1 for a webinar)
 # bitrate = <max video bitrate for senders> (e.g., 128000)
@@ -17,7 +19,8 @@
 #			can be a comma separated list in order of preference, e.g., vp9,vp8,h264)
 # vp9_profile = VP9-specific profile to prefer (e.g., "2" for "profile-id=2")
 # h264_profile = H.264-specific profile to prefer (e.g., "42e01f" for "profile-level-id=42e01f")
-# opus_fec = true|false (whether inband FEC must be negotiated; only works for Opus, default=false)
+# opus_fec = true|false (whether inband FEC must be negotiated; only works for Opus, default=true)
+# opus_dtx = true|false (whether DTX must be negotiated; only works for Opus, default=false)
 # video_svc = true|false (whether SVC support must be enabled; only works for VP9, default=false)
 # audiolevel_ext = true|false (whether the ssrc-audio-level RTP extension must
 #		be negotiated/used or not for new publishers, default=true)
@@ -41,6 +44,14 @@
 #               for admin to manage listening only participants. default=false)
 # require_e2ee = true|false (whether all participants are required to publish and subscribe
 #             using end-to-end media encryption, e.g., via Insertable Streams; default=false)
+# dummy_publisher = true|false (whether a dummy publisher should be created in this room,
+#                 with one separate m-line for each codec supported in the room; this is
+#                 useful when there's a need to create subscriptions with placeholders
+#                 for some or all m-lines, even when they aren't used yet; default=false)
+# dummy_streams = in case dummy_publisher is set to true, array of codecs to offer,
+#				optionally with a fmtp attribute to match (codec/fmtp properties).
+#				If not provided, all codecs enabled in the room are offered, with no fmtp.
+#				Notice that the fmtp is parsed, and only a few codecs are supported.
 #}
 
 general: {
@@ -60,7 +71,7 @@ room-1234: {
 	description = "Demo Room"
 	secret = "adminpwd"
 	publishers = 6
-	bitrate = 128000
+	bitrate = 128000	# This is a low cap, increase if you want to use simulcast or SVC
 	fir_freq = 10
 	#audiocodec = "opus"
 	#videocodec = "vp8"

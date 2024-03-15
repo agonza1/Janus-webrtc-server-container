@@ -4,7 +4,7 @@ services:
     janus_server:
         build:
           context: .
-        command: ["-S", "173.194.196.127:19302"]
+        command: ["-S", "stun.l.google.com:19302"] #STUN IP
         ports:
           - "8088:8088"
           - "8089:8089"
